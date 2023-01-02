@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="risecommerce_maintenance_mode_notify_user" resource="default" engine="innodb" comment="Risecommerce Maintenance Mode Notify User Table">
+        <column xsi:type="int" name="notify_user_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Notify User ID"/>
+        <column xsi:type="varchar" name="email" length="255" nullable="false" comment="Email"/>
+        <column xsi:type="boolean" name="is_notified" default="0" comment="Is Notified"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" comment="User Created At"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="User Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="notify_user_id"/>
+        </constraint>
+        <index referenceId="RISECOMMERCE_MAINTENANCE_MODE_NOTIFY_USER" indexType="fulltext">
+            <column name="email"/>
+        </index>
+    </table>
+</schema>

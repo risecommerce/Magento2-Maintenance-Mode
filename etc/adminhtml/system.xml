@@ -1,0 +1,207 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="risecommerce" translate="label" sortOrder="500">
+             <label>Risecommerce</label>
+        </tab>
+        <section id="maintenancemode" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Maintenance Mode</label>
+            <tab>risecommerce</tab>
+            <resource>Risecommerce_MaintenanceMode::maintenancemode</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Settings</label>
+                <field id="enable" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Maintenance Mode</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="allow_ips" translate="label comment" type="textarea" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allow IP Addresses</label>
+                    <comment>Enter comma separated IP addresses. If website is accessed using HTTP and the client IP address corresponds to one of the entries in this list, then maintenance mode is off.</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="page_title" translate="label comment" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" >
+                    <label>Page Title</label>
+                    <comment>Enter page title to be shown in the header of a web page.</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="headline_text" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Headline</label>
+                    <validate>required-entry validate-no-html-tags</validate>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="headline_text_color" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Headline Color</label>
+                    <frontend_model>Risecommerce\MaintenanceMode\Block\Adminhtml\Color</frontend_model>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="description" translate="label" sortOrder="5" type="editor" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Description</label>
+                    <validate>required-entry</validate>
+                    <frontend_model>Risecommerce\MaintenanceMode\Block\Adminhtml\Editor</frontend_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="description_color" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Description Color</label>
+                    <validate>required-entry</validate>
+                    <frontend_model>Risecommerce\MaintenanceMode\Block\Adminhtml\Color</frontend_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="background_image" translate="label" type="Magento\Config\Block\System\Config\Form\Field\Image" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Image</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system" scope_info="1">risecommerce/maintenance</upload_dir>
+                    <base_url type="media" scope_info="1">risecommerce/maintenance</base_url>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="background_color" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Color</label>
+                    <validate>required-entry</validate>
+                    <frontend_model>Risecommerce\MaintenanceMode\Block\Adminhtml\Color</frontend_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="add_newsletter" translate="label" type="select" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add Newsletter Button</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="newsletter_text" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Newsletter Text</label>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="add_newsletter">1</field>
+                    </depends>
+                </field>
+                <field id="newsletter_text_color" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Newsletter Text Color</label>
+                    <validate>required-entry</validate>
+                    <frontend_model>Risecommerce\MaintenanceMode\Block\Adminhtml\Color</frontend_model>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="add_newsletter">1</field>
+                    </depends>
+                </field>
+                <field id="newsletter_email_template" translate="label comment" type="select" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Newsletter Email Template</label>
+                    <validate>required-entry</validate>
+                    <comment>Email template chosen based on theme fallback when "Default" option is selected.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="add_newsletter">1</field>
+                    </depends>
+                </field>
+                <field id="add_contact_us" translate="label" type="select" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add Contact Us Button</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="contact_us_email" translate="label" type="text" sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Contact Us Email</label>
+                    <validate>validate-email required-entry</validate>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="add_contact_us">1</field>
+                    </depends>
+                </field>
+                <field id="add_social_button" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add Social Icon</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="facebook_link" translate="label" type="text" sortOrder="16" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Facebook Link</label>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="add_social_button">1</field>
+                    </depends>
+                </field>
+                <field id="twitter_link" translate="label" type="text" sortOrder="17" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Twitter Link</label>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="add_social_button">1</field>
+                    </depends>
+                </field>
+                <field id="pinterest_link" translate="label" type="text" sortOrder="18" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Pinterest Link</label>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="add_social_button">1</field>
+                    </depends>
+                </field>
+                <field id="gplus_link" translate="label" type="text" sortOrder="19" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Google Plus Link</label>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="add_social_button">1</field>
+                    </depends>
+                </field>
+                <field id="add_countdown_clock" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add CountDown Clock</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="timer_color" translate="label" type="text" sortOrder="21" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Timer Color</label>
+                    <validate>required-entry</validate>
+                    <frontend_model>Risecommerce\MaintenanceMode\Block\Adminhtml\Color</frontend_model>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="add_countdown_clock">1</field>
+                    </depends>
+                </field>
+                <field id="auto_timer" translate="label" type="select" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Auto Disable Maintenance Mode When Timer Ends</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="add_countdown_clock">1</field>
+                    </depends>
+                </field>
+                <field id="start_date" translate="label comment" sortOrder="23" type="date" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Start Date</label>
+                    <frontend_model>Risecommerce\MaintenanceMode\Block\Adminhtml\DatePicker</frontend_model>
+                    <comment>Maintenance mode is on immediately if start date is not defined.</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="end_date" translate="label comment" sortOrder="24" type="date" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>End Date</label>
+                    <validate>required-entry</validate>
+                    <frontend_model>Risecommerce\MaintenanceMode\Block\Adminhtml\DatePicker</frontend_model>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="add_countdown_clock">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,8 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+   <event name="controller_action_predispatch">
+       <observer name="check_maintenance_mode_observer" instance="Risecommerce\MaintenanceMode\Observer\CheckMaintenanceModeObserver" />
+   </event>
+    <event name="controller_action_predispatch_cms_index_index">
+        <observer name="check_maintenance_mode_homepage_observer" instance="Risecommerce\MaintenanceMode\Observer\CheckMaintenanceModeObserver" />
+    </event>
+</config>

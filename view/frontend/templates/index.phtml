@@ -1,0 +1,166 @@
+<div class="maintenance-page-wrapper" style="<?php if ($block->escapeUrl($block->getBackgroundImageUrl())) {
+    echo "background-image: url('" . $block->escapeUrl($block->getBackgroundImageUrl()) . "');";
+                                             } ?>background-color: <?= $block->escapeUrl($block->getBackgroundColor()) ?>">
+    <div class="container">
+        <div class="content">
+            <h1 class="headline-text"><?= $block->escapeHtml($block->getHeadlineText()); ?></h1>
+            <h3 class="description"><?= $block->getDescription(); ?></h3>
+            <?php if ($block->escapeHtml($block->getAddCountDownClock()) && $block->escapeHtml($block->getEndDate())): ?>
+                <div id="flag" style="display: none;"></div>
+                <div id="timer" class="timer-block">
+                    <div>
+                        <span class="days"></span>
+                        <div class="smalltext">Days</div>
+                    </div>
+                    <div>
+                        <span class="hours"></span>
+                        <div class="smalltext">Hours</div>
+                    </div>
+                    <div>
+                        <span class="minutes"></span>
+                        <div class="smalltext">Minutes</div>
+                    </div>
+                    <div>
+                        <span class="seconds"></span>
+                        <div class="smalltext">Seconds</div>
+                    </div>
+                </div>
+            <?php endif ?>
+            <?php if ($block->escapeHtml($block->getAddNewsletter())): ?>
+                <div class="newsletter-block">
+                    <div class="newsletter-text"><?= $block->escapeHtml($block->getNewsletterText()) ?></div>
+                    <div class="newsletter-form-wrapper">
+                        <form class="form subscribe" novalidate method="post"
+                              data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+                              id="newsletter-validate-detail" style="margin:auto;">
+                            <div class="newsletter-content">
+                                <div class="field newsletter">
+                                    <div class="input-box">
+                                        <div class="control">
+                                            <input name="email" type="email" id="footer_newsletter"
+                                                   data-validate="{required:true, 'validate-email':true}"
+                                                   placeholder="<?= /* @noEscape */
+                                                    __('Your e-mail') ?>"/>
+                                        </div>
+                                        <div for="newsletter" class="newsletter-message" id="newsletter-message"></div>
+                                    </div>
+                                </div>
+                                <div class="actions">
+                                    <button id="subscribe-btn" class="action subscribe primary" title="Subscribe"
+                                            type="button">
+                                        <span><?= /* @noEscape */
+                                            __('Notify Us') ?></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            <?php endif ?>
+            <?php if ($block->escapeHtml($block->getAddSocialButton())): ?>
+                <div class="social-block">
+                    <?php if ($block->escapeHtml($block->getFacebookLink())): ?>
+                        <a href="<?= $block->escapeUrl($block->getFacebookLink()) ?>" class="facebook"><i
+                                class="fa fa-facebook icon"></i></a>
+                    <?php endif ?>
+                    <?php if ($block->escapeHtml($block->getTwitterLink())): ?>
+                        <a href="<?= $block->escapeUrl($block->getTwitterLink()) ?>" class="twitter"><i
+                                class="fa fa-twitter icon"></i></a>
+                    <?php endif ?>
+                    <?php if ($block->escapeHtml($block->getPinterestLink())): ?>
+                        <a href="<?= $block->escapeUrl($block->getPinterestLink()) ?>" class="pinterest"><i
+                                class="fa fa-pinterest icon"></i></a>
+                    <?php endif ?>
+                    <?php if ($block->escapeHtml($block->getGooglePlusLink())): ?>
+                        <a href="<?= $block->escapeUrl($block->getGooglePlusLink()) ?>" class="google-plus"><i
+                                class="fa fa-google-plus icon"></i></a>
+                    <?php endif ?>
+                </div>
+            <?php endif ?>
+            <?php if ($block->escapeHtml($block->getAddContactUs()) && $block->escapeHtml($block->getContactUsEmail())): ?>
+                <div class="contact-block">
+                    <a href="mailto:<?= $block->escapeUrl($block->getContactUsEmail()) ?>"><span><?= /* @noEscape */
+                            __('Contact Us') ?></span></a>
+                </div>
+            <?php endif ?>
+        </div>
+    </div>
+</div>
+<script>
+    require(['jquery'], function ($) {
+        <?php if ($block->getAddCountDownClock() && $block->getEndDate()) { ?>
+        $(document).ready(function () {
+            $('#timer').countdowntimer({
+                startDate: "<?= $block->escapeHtml(str_replace('-', '/', $block->getStoreDateTime())) ?>",
+                dateAndTime: "<?= $block->escapeHtml(str_replace('-', '/', $block->getEndDate())); ?>",
+                size: "lg",
+                regexpMatchFormat: "([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2})",
+                timeUp: reloadtime,
+                regexpReplaceWith: "$1 : $2 : $3 : $4"
+            });
+        });
+
+        function reloadtime() {
+            <?php if ($block->getAutoTimer()) { ?>
+            $.ajax({
+                type: "POST",
+                url: 'index/timereload',
+                success: function () {
+                    location.reload(true);
+                }
+            });
+            <?php } ?>
+        }
+            <?php
+        }
+        if ($block->getAddNewsletter()) { ?>
+        $('#subscribe-btn').click(function () {
+            if ($('#footer_newsletter').val() == '' || $('#footer_newsletter') == null) {
+                $('#newsletter-message').text('Please enter email address.');
+                $('#newsletter-message').addClass('newsletter-error');
+            } else {
+                $('#newsletter-message').text('');
+                $('#newsletter-message').removeClass('newsletter-error');
+                $.ajax({
+                    type: "POST",
+                    url: 'index/save',
+                    data: $('#newsletter-validate-detail').serialize(), // serializes the form's elements.
+                    success: function (data) {
+                        response = JSON.parse(data);
+                        if (response['success'] == 0) {
+                            $('#newsletter-message').removeClass('newsletter-success');
+                            $('#newsletter-message').addClass('newsletter-error');
+                            $('#newsletter-message').text(response['message']);
+                        } else {
+                            $('#newsletter-message').removeClass('newsletter-error');
+                            $('#newsletter-message').addClass('newsletter-success');
+                            $('#newsletter-message').text(response['message']);
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        $('#newsletter-message').text('Something went wrong. Please try again letter.');
+                        $('#newsletter-message').addClass('newsletter-error');
+                    }
+                });
+            }
+        });
+        <?php } ?>
+    });
+</script>
+<style type="text/css">
+    .headline-text {
+        color: <?= $block->escapeQuote($block->getHeadlineTextColor()); ?>
+    }
+
+    .description {
+        color: <?= $block->escapeQuote($block->getDescriptionColor()) ?>
+    }
+
+    #timer {
+        color: <?= $block->escapeQuote($block->getTimerColor()) ?>
+    }
+
+    .newsletter-text {
+        color: <?= $block->escapeQuote($block->getNewsletterTextColor()) ?>
+    }
+</style>

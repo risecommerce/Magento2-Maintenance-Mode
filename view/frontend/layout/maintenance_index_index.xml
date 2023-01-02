@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" src_type="url" />
+        <css src="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700" src_type="url" />
+        <script src="Risecommerce_MaintenanceMode::js/jquery.countdownTimer.js"/>
+    </head>
+    <body>
+        <referenceContainer name="after.body.start" remove="true"/>
+        <referenceContainer name="top.links" remove="true"/>
+        <referenceContainer name="header.container" remove="true" />
+        <referenceContainer name="page.top" remove="true"/>
+        <referenceContainer name="columns.top" remove="true"/>
+        <referenceContainer name="main" remove="true"/>
+        <referenceContainer name="page.bottom.container" remove="true" />
+        <referenceContainer name="footer-container" remove="true" />
+        <referenceContainer name="before.body.end" remove="true" />
+        <referenceContainer name="content" remove="true"/>
+        <referenceContainer name="main.content">
+			<block class="Risecommerce\MaintenanceMode\Block\MaintenanceRedirect" name="maintenance_index_redirect" cacheable="false" />
+            <block class="Risecommerce\MaintenanceMode\Block\Index" name="maintenance_index_index" template="Risecommerce_MaintenanceMode::index.phtml" cacheable="false" />
+        </referenceContainer>
+    </body>
+</page>

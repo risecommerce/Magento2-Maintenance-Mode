@@ -1,0 +1,24 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <maintenancemode>
+            <general>
+                <enable>0</enable>
+                <page_title>Maintenance Mode</page_title>
+                <headline_text>Website is under maintenance</headline_text>
+                <headline_text_color>#000000</headline_text_color>
+                <description>Sorry, We're down for maintenance. We will be back shortly.</description>
+                <description_color>#000000</description_color>
+                <background_color>#e8e8e8</background_color>
+                <add_newsletter>1</add_newsletter>
+                <newsletter_text>Notify me when it's ready</newsletter_text>
+                <newsletter_text_color>#000000</newsletter_text_color>
+                <newsletter_email_template>maintenancemode_general_newsletter_email_template</newsletter_email_template>
+                <add_contact_us>0</add_contact_us>
+                <add_social_button>0</add_social_button>
+                <add_countdown_clock>0</add_countdown_clock>
+                <timer_color>#FF0000</timer_color>
+                <auto_timer>1</auto_timer>
+            </general>
+        </maintenancemode>
+    </default>
+</config>
