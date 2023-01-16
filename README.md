@@ -7,10 +7,18 @@ version - 2.3.x, 2.4.x
 
 ##How to install Extension
 
+Method I)
+
 1. Download the archive file.
 2. Unzip the file
 3. Create a folder [Magento_Root]/app/code/Risecommerce/MaintenanceMode
 4. Drop/move the unzipped files to directory '[Magento_Root]/app/code/Risecommerce/MaintenanceMode'
+
+Method II)
+
+Using Composer
+
+composer require risecommerce/magento2-maintenance-mode-extension:1.0.1
 
 #Enable Extension:
 - php bin/magento module:enable Risecommerce_MaintenanceMode
