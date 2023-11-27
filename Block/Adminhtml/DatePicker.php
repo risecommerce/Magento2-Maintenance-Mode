@@ -11,7 +11,7 @@
  * @link     https://www.risecommerce.com
  */
 
-namespace Risecommerce\MaintenanceMode\Block\AdminHtml;
+namespace Risecommerce\MaintenanceMode\Block\Adminhtml;
 
 use Magento\Framework\Data\Form\Element\AbstractElement;
 use Magento\Framework\Stdlib\DateTime;
