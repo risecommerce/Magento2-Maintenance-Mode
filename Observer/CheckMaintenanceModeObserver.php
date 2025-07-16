@@ -50,6 +50,11 @@ class CheckMaintenanceModeObserver implements ObserverInterface
      */
     private $httpRequest;
 
+     /**
+     * @var Response
+     */
+    private $response;
+
     /**
      * Locale Date/Timezone
      * @var \Magento\Framework\Stdlib\DateTime\TimezoneInterface

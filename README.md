@@ -24,7 +24,7 @@ For support or inquiries, please visit our [contact page](https://risecommerce.c
 
 Run the following command:  
 
-composer require risecommerce/magento2-maintenance-mode-extension:1.0.1
+composer require risecommerce/magento2-maintenance-mode-extension
 
 #Enable Extension:
 - php bin/magento module:enable Risecommerce_MaintenanceMode

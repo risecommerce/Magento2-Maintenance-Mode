@@ -1,14 +1,20 @@
 <?php
 /**
- * Class Editor Doc Comment
+ * RiseCore Technologies Pvt Ltd, Lucknow, India
  *
- * PHP version 8
+ * Copyright © Risecommerce. All rights reserved.
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer version in the future.
+ * If you wish to customise this module for your needs.
+ * Please contact us https://risecommerce.com/contact
  *
- * @category Risecommerce Technologies
- * @package  Risecommerce_MaintenanceMode
- * @author   Risecommerce <magento@risecommerce.com>
- * @license  https://www.risecommerce.com  Open Software License (OSL 3.0)
- * @link     https://www.risecommerce.com
+ * @category    Risecommerce
+ * @package     Risecommerce_MaintenanceMode
+ * @developer   Amarjeet Prajapati (amarjeet.wdev@gmail.com)
+ * @copyright   Copyright (c) Risecommerce (https://www.risecommerce.com/)
+ * @license     https://www.risecommerce.com/LICENSE.txt
  */
 
 namespace Risecommerce\MaintenanceMode\Block\Adminhtml;
